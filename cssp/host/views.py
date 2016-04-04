@@ -4,7 +4,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .forms import AddHostForm
 from .models import Host
-from ..extension import db
+from ..dbs import db
 
 host = Blueprint('host', __name__, url_prefix='/hosts')
 
@@ -13,7 +13,7 @@ def index():
     if request.method == 'GET':
         form = AddHostForm()
         host_list = Host.query.filter().all()
-        return reander_template('host/index.html', form=form, host_list=host_list)
+        return render_template('host/index.html', form=form, host_list=host_list)
     else:
         form = AddHostForm(request.form)
         if form.validate_on_submit():

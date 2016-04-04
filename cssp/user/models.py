@@ -2,14 +2,12 @@
 
 from sqlalchemy import Column
 from ..dbs import db
-from .constants import HOST_OK
 
-class Host(db.Model):
+class User(db.Model):
 
-    __tablename__ = 'hosts'
+    __tablename__ = 'users'
 
     id = Column(db.Integer, primary_key=True)
-    name = Column(db.String(128), nullable=False, unique=True)
     username = Column(db.String(32), default='cssp')
     password = Column(db.String(32), default='cssp')
-    status_code = Column(db.SmallInteger, default=HOST_OK)
+    email = Column(db.String(128), default='cssp@cssp.com')
