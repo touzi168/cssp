@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from cssp import app, db
 from flask.ext.script import Manager
+from flask.ext.migrate import Migrate, MigrateCommand
 
-from cssp import create_app
-
-app = create_app()
 manager = Manager(app)
+migrate = Migrate(app, db)
 
-
-@manager.command
-def run():
-    """Run in local machine."""
-
-    app.run(host='0.0.0.0', port=80)
+manager.add_command('db', MigrateCommand)
 
 if __name__ == "__main__":
     manager.run()

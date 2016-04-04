@@ -6,12 +6,14 @@ from flask import Flask, request, render_template
 from .config import DefaultConfig
 from .extension import db, cache, login_manager
 from .user import user
+from .host import host
 
 # For import *
 __all__ = ['create_app']
 
 DEFAULT_BLUEPRINTS = (
     user,
+    host,
 )
 
 def create_app(config=None, app_name=None, blueprints=None):
